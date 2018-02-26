@@ -21,6 +21,7 @@
     "huh": "^2.0.1"
   },
   "devDependencies": {
-    "claudia": "^3.3.1"
+    "claudia": "^3.3.1",
+    "node-google-text-to-speech": "^0.1.0"
   }
 }

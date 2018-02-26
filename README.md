@@ -1,0 +1,1 @@
+`claudia update --profile claudia`
