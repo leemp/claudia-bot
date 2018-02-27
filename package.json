@@ -4,7 +4,7 @@
   "description": "",
   "main": "bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "claudia update --profile claudia"
   },
   "repository": {
     "type": "git",
@@ -18,10 +18,10 @@
   "homepage": "https://github.com/leemp/claudia-bot#readme",
   "dependencies": {
     "claudia-bot-builder": "^3.0.0",
-    "huh": "^2.0.1"
+    "huh": "^2.0.1",
+    "node-google-text-to-speech": "^0.1.0"
   },
   "devDependencies": {
-    "claudia": "^3.3.1",
-    "node-google-text-to-speech": "^0.1.0"
+    "claudia": "^3.3.1"
   }
 }

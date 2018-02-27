@@ -1,29 +1,34 @@
 var botBuilder = require('claudia-bot-builder'),
-    excuse = require('huh');
+    excuse = require('huh'),
+    telegramTemplate = require('claudia-bot-builder').telegramTemplate;
 
-const telegramTemplate = require('claudia-bot-builder').telegramTemplate;
-
-var tts = require('node-google-text-to-speech');
+var audio = require('./audio');
+var quote = require('./quote');
 
 module.exports = botBuilder(function (request) {
 
-    tts.translate('ru', 'привет как дела', function(result) {
-        // console.log(result);
-        if(result.success) { //check for success
-            var response = { 'audio' : result.data };
-            return new telegramTemplate.Audio(response)
-                .addTitle('Testing')
-                .addPerformer('Shit')
-                .get();
+    console.log('Request: ', JSON.stringify(request));
+
+    if (request.type === 'telegram') {
+
+        // extract command
+        if(request.originalRequest.message.entities.type) {
+            var regExp = /^\/[^\s]+/g;
+            var commandArr = regExp.exec(request.text);
+            console.log(commandArr);
         }
-    });
 
-    if (request.type === 'telegram')
-        return new telegramTemplate.Text(`What's your favorite House in Game Of Thrones`)
-            .addReplyKeyboard([['Stark'], ['Lannister'], ['Targaryen'], ['None of the above']])
-            .get();
+        return quote(request);
+    }
 
-    return 'Thanks for sending ' + request.text  +
-        '. Your message is very important to us, but ' +
-        excuse.get();
+    // return audio(request);
+
+    // if (request.type === 'telegram')
+    //     return new telegramTemplate.Text('Whats your favorite House in Game Of Thrones')
+    //         .addReplyKeyboard([['Stark'], ['Lannister'], ['Targaryen'], ['None of the above']])
+    //         .get();
+    //
+    // return 'Thanks for sending ' + request.text  +
+    //     '. Your message is very important to us, but ' +
+    //     excuse.get();
 });
