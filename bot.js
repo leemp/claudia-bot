@@ -1,9 +1,7 @@
 var botBuilder = require('claudia-bot-builder'),
-    excuse = require('huh'),
     telegramTemplate = require('claudia-bot-builder').telegramTemplate;
 
-var audio = require('./audio');
-var quote = require('./quote');
+const supportedCommands = [ '/audio', '/quote', '/start' ];
 
 module.exports = botBuilder(function (request) {
 
@@ -11,24 +9,22 @@ module.exports = botBuilder(function (request) {
 
     if (request.type === 'telegram') {
 
-        // extract command
-        if(request.originalRequest.message.entities.type) {
+        // there's a command, extract it
+        if(request.originalRequest.message.entities) {
             var regExp = /^\/[^\s]+/g;
-            var commandArr = regExp.exec(request.text);
-            console.log(commandArr);
+            var command = request.text.match(regExp)[0];
+            var textAfterCommand = request.text.split(regExp)[1];
+
+            if(supportedCommands.includes(command)) {
+                var commandReq = require('.' + command);
+                return commandReq(request, command, textAfterCommand);
+            }
+
+            return 'Command not found';
         }
 
-        return quote(request);
+        // process regular messages here
+
     }
 
-    // return audio(request);
-
-    // if (request.type === 'telegram')
-    //     return new telegramTemplate.Text('Whats your favorite House in Game Of Thrones')
-    //         .addReplyKeyboard([['Stark'], ['Lannister'], ['Targaryen'], ['None of the above']])
-    //         .get();
-    //
-    // return 'Thanks for sending ' + request.text  +
-    //     '. Your message is very important to us, but ' +
-    //     excuse.get();
 });
