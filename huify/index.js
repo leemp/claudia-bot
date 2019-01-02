@@ -1,0 +1,54 @@
+'use strict';
+
+var telegramTemplate = require('claudia-bot-builder').telegramTemplate;
+
+module.exports = function(request) {
+
+  const consonants = 'бвгджзклмнпрстфхцчшщьъ'
+  const vowels = {
+    а: 'я',
+    е: 'е',
+    ё: 'ё',
+    и: 'и',
+    о: 'е',
+    у: 'ю',
+    э: 'е',
+    ю: 'ю',
+    я: 'я',
+    ы: 'и',
+  }
+
+  const text = request.text
+    .replace(/(\r\n|\n|\r)/gm, ' ')
+    .trim()
+    .toLowerCase()
+
+  const arrayOfWords = text.split(' ')
+  const words = []
+  let responseFlag = false
+
+  if (arrayOfWords.length < 3) {
+    arrayOfWords.forEach(function(word) {
+
+      if ((Math.floor(Math.random() * 6) + 1) > 4) { // (between 1 and 6) > 4 # means will work approx every third time
+        responseFlag = true
+        if (word.length > 3) {
+          while (~consonants.indexOf(word[0])) {
+            word = word.substr(1)
+          }
+          word = 'ху' + vowels[word[0]] + word.substr(1)
+        }
+      }
+
+      words.push(word)
+    })
+
+    if (responseFlag === true) {
+      return new telegramTemplate.Text('@' + request.originalRequest.message.from.username + ' ' + words.join(' ')).get()
+    }
+
+  }
+
+  // return new telegramTemplate.Text(message).get() // nothing to huify
+
+};

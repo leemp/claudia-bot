@@ -1,7 +1,8 @@
 var botBuilder = require('claudia-bot-builder'),
-    telegramTemplate = require('claudia-bot-builder').telegramTemplate;
+    telegramTemplate = require('claudia-bot-builder').telegramTemplate,
+    huify = require('./huify');
 
-const supportedCommands = [ '/audio', '/quote', '/start' ];
+const supportedCommands = [ '/audio', '/quote', '/start', '/huify' ];
 
 module.exports = botBuilder(function (request) {
 
@@ -24,6 +25,7 @@ module.exports = botBuilder(function (request) {
         }
 
         // process regular messages here
+        return huify(request);
 
     }
 
