@@ -41,14 +41,14 @@ module.exports = botBuilder(function (request, fullRequest) {
                     }
                 }
 
-                // process regular messages here
-                return huify(request);
-
             }).catch(function (reason) {
                 console.log('Bot Info networking error: ', reason);
                 return 'Whoopsie, your request failed to be processed!';
             });
         }
+
+        // process regular messages here
+        return huify(request);
 
     }
 
