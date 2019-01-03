@@ -2,6 +2,6 @@
 
 module.exports = function(request, command, text) {
 
-    return 'start command text';
+    return 'СТАРТ - ХУЯРТ!';
 
 };

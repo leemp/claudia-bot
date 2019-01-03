@@ -18,6 +18,7 @@
   "homepage": "https://github.com/leemp/claudia-bot#readme",
   "dependencies": {
     "claudia-bot-builder": "^3.0.0",
+    "minimal-request-promise": "^1.5.0",
     "node-google-text-to-speech": "^0.1.0"
   },
   "devDependencies": {
