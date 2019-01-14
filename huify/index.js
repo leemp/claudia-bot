@@ -32,13 +32,15 @@ module.exports = function (request) {
         if (arrayOfWords.length < 3) {
             arrayOfWords.forEach(function (word) {
 
-                if ((Math.floor(Math.random() * 6) + 1) > 4) { // (between 1 and 6) > 4 # means will work approx every third time
-                    responseFlag = true
-                    if (word.length > 2) {
-                        while (~consonants.indexOf(word[0])) {
-                            word = word.substr(1)
+                if (/^[a-zA-Zа-яА-Я]+$/.test(word)) { // check if all characters are letters
+                    if ((Math.floor(Math.random() * 6) + 1) > 4) { // (between 1 and 6) > 4 # means will work approx every third time
+                        responseFlag = true
+                        if (word.length > 2) {
+                            while (~consonants.indexOf(word[0])) {
+                                word = word.substr(1)
+                            }
+                            word = 'ху' + vowels[word[0]] + word.substr(1)
                         }
-                        word = 'ху' + vowels[word[0]] + word.substr(1)
                     }
                 }
 
