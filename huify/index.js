@@ -32,10 +32,10 @@ module.exports = function (request) {
         if (arrayOfWords.length < 3) {
             arrayOfWords.forEach(function (word) {
 
-                if (/^[a-zA-Zа-яА-Я]+$/.test(word)) { // check if all characters are letters
+                if (/^[а-яА-Я]+$/.test(word)) { // check if all characters are cyrillic letters
                     if ((Math.floor(Math.random() * 6) + 1) > 4) { // (between 1 and 6) > 4 # means will work approx every third time
                         responseFlag = true
-                        if (word.length > 2) {
+                        if (word.length > 3) {
                             while (~consonants.indexOf(word[0])) {
                                 word = word.substr(1)
                             }
