@@ -49,7 +49,8 @@ module.exports = function(request, command, text) {
     'Вычисляю время до начала ВЕЛИКОГО КУТЕЖА в БУДАПЕШТЕ (10 апреля 2019)...',
     new telegramTemplate.ChatAction('typing').get(),
     new telegramTemplate.Pause(800).get(),
-    'До начала ВЕЛИЧАЙШЕГО ПРАЗДНИКА осталось:\n' + countdown('04/10/2019 12:00:00 PM')
+    'До начала ВЕЛИЧАЙШЕГО ПРАЗДНИКА осталось:\n' + countdown('04/10/2019 12:00:00 PM'),
+    new telegramTemplate.Location(47.494665, 19.052894).get()
   ];
 
 };

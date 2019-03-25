@@ -3,7 +3,7 @@ var botBuilder = require('claudia-bot-builder'),
     huify = require('./huify'),
     mrp = require('minimal-request-promise');
 
-const supportedCommands = ['start', 'budapest'];
+const supportedCommands = ['start', 'budapest', 'budapest-party-reminder'];
 
 module.exports = botBuilder(function (request, fullRequest) {
 
