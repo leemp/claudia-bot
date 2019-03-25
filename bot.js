@@ -3,8 +3,7 @@ var botBuilder = require('claudia-bot-builder'),
     huify = require('./huify'),
     mrp = require('minimal-request-promise');
 
-// const supportedCommands = [ 'audio', 'quote', 'start', 'huify' ];
-const supportedCommands = ['start'];
+const supportedCommands = ['start', 'budapest'];
 
 module.exports = botBuilder(function (request, fullRequest) {
 
