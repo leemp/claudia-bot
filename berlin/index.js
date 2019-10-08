@@ -46,11 +46,11 @@ module.exports = function(request, command, text) {
   return [
     new telegramTemplate.ChatAction('typing').get(),
     new telegramTemplate.Pause(400).get(),
-    'Вычисляю время до начала ВЕЛИКОГО КУТЕЖА в БУДАПЕШТЕ (10 апреля 2019)...',
+    'Вычисляю время до начала ВЕЛИКОГО КУТЕЖА в БЕРЛИНЕ (15 апреля 2020)...',
     new telegramTemplate.ChatAction('typing').get(),
     new telegramTemplate.Pause(800).get(),
-    'До начала ВЕЛИЧАЙШЕГО ПРАЗДНИКА осталось:\n' + countdown('04/10/2019 12:00:00 PM'),
-    new telegramTemplate.Location(47.494665, 19.052894).get()
+    'До начала ВЕЛИЧАЙШЕГО ПРАЗДНИКА осталось:\n' + countdown('04/15/2020 12:00:00 PM'),
+    new telegramTemplate.Location(52.5222611, 13.3994481).get()
   ];
 
 };
